@@ -5,6 +5,8 @@
 * default configuration should reflect local dev environment
 * use environment matrix on travis to test/deploy different builds
 * configuration should be documented in docs
+* interactive prompt? is that overkill?
+* AWS: automate testing of credentials
 
 ## How do we manage external dependencies?
 
