@@ -1,5 +1,15 @@
 # User Testing
 
+Cycle:
+
+USER TESTING =>
+    BUGS FILED =>
+    TRIAGE =>
+    IMPLEMENTATION =>
+    DEPLOYMENT =>
+    USER TESTING =>
+        ...
+
 ## Dev responsibilities
 * Devs should learn about the user testing process and know how their work fits into the general user testing schedule
 * Devs need to triage/augment tickets filed from user testing
