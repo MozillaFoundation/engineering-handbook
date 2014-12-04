@@ -1,0 +1,34 @@
+# Grunt handles some Jekyll configuration. If you set something here and
+# it doesn't work, check if it is set in the Gruntfile.
+
+# Exclude directories and/or files from the conversion.
+# Grunt moves image files and asset directories.
+exclude: ['.gitignore', 'Gemfile', 'Gemfile.lock', .'ruby-version', 'README.md', 'node_modules', 'ruby_gems', 'vendor']
+
+# Force inclusion of directories and/or files in the conversion.
+# .htaccess is a good example since dotfiles are excluded by default.
+include: []
+
+# Default post path style
+# date  /:categories/:year/:month/:day/:title.html
+# pretty  /:categories/:year/:month/:day/:title/
+# none  /:categories/:title.html
+permalink: pretty
+
+# Publish posts with future date.
+# _config.build.yml sets this to false on `grunt build`
+future: true
+
+# Compile posts in the _drafts directory.
+# _config.build.yml sets this to false on `grunt build`
+show_drafts: true
+
+# Markdown library
+markdown: rdiscount
+#markdown: redcarpet
+# Markdown library options
+# redcarpet:
+  # extensions: ['fenced_code_blocks', 'smart']
+
+# Use Pygments to highlight code blocks
+highlighter: pygments
