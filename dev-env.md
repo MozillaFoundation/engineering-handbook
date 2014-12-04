@@ -6,7 +6,7 @@
 * default configuration should reflect local dev environment +
    * attempt to connect to database
 * configuration should be documented in docs
-* AWS: standard naming conventions
+* AWS: standard naming conventions for variables (secret key, bucket name etc.)
 * format standards:
     * types?
     * linting?
