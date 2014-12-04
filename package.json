@@ -1,0 +1,34 @@
+{
+  "name": "MoFo-Engineering-Handbook",
+  "version": "0.0.1",
+  "description": "The Mozilla Foundation Engineering Handbook",
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/MozillaFoundation/MoFo-Engineering-Handbook.git"
+  },
+  "dependencies": {},
+  "scripts": {
+    "postinstall": "bower install && bundle",
+    "start": "node_modules/.bin/grunt dev"
+  },
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-cli": "^0.1.13",
+    "grunt-concurrent": "^1.0.0",
+    "grunt-contrib-clean": "^0.6.0",
+    "grunt-contrib-connect": "^0.9.0",
+    "grunt-contrib-csslint": "^0.3.1",
+    "grunt-contrib-cssmin": "^0.10.0",
+    "grunt-contrib-jshint": "~0.10.0",
+    "grunt-contrib-less": "^0.12.0",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-jekyll": "^0.4.2",
+    "grunt-jsbeautifier": "^0.2.7",
+    "grunt-rev": "~0.1.0",
+    "jit-grunt": "^0.9.0",
+    "time-grunt": "^1.0.0"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  }
+}
