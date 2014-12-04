@@ -23,7 +23,7 @@ module.exports = function (grunt) {
           '<%= site.app %>/**/*.xml',
           '!<%= site.app %>/vendor'
         ],
-        tasks: ['jekyll:server']
+        tasks: ['jekyll:build']
       },
       livereload: {
         options: {

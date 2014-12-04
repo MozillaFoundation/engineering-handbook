@@ -28,8 +28,11 @@ grunt check
 
 As long as the build is passing, travis is deploying [![build](https://travis-ci.org/MozillaFoundation/MoFo-Engineering-Handbook.svg)](https://travis-ci.org/MozillaFoundation/MoFo-Engineering-Handbook)
 
+## To add a chapter
 
+Just make sure you have "handbook" in your array of categories in your yaml front matter. (see _posts/mobile-first for an example)
 
 ## Todo:
 
 - [ ] Set up Travis so this works: [![build](https://travis-ci.org/MozillaFoundation/MoFo-Engineering-Handbook.svg)](https://travis-ci.org/MozillaFoundation/MoFo-Engineering-Handbook)
+- [ ] Fix livereload so that works
