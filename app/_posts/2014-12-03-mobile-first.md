@@ -22,7 +22,7 @@ with all of our products and sites.
 |------------|------------------------------------|-----------------|--------------|-------------------------------------|-----------------|--------------|
 | Firefox OS |             v1.3/Tarako            |  320px × 480px  |              |             v2.1/Flame              |  480px × 854px  |      163     |
 |   Android  |          v4.2/Huawei Y600          |  480px × 854px  |     196      |            v4.4/Nexus 4             |  768px × 1280px |      318     |
-|    iOS     | v7.x/iPhone 5 & iPod Touch (5 Gen) | 640px × 1136px  |     326      | 8.x/iPhone 6 & iPod Touch (6th Gen) |  640px × 1136px |      326     |
+|    iOS     | v7.x/iPhone 5 & iPod Touch (5 Gen) |  640px × 1136px |     326      | 8.x/iPhone 6 & iPod Touch (6th Gen) |  640px × 1136px |      326     |
 
 *note: we need to do some research and update the “screen” column above to a
 “viewport” column*
@@ -50,6 +50,11 @@ Reading on a small screen can be very difficult. Make sure font sizes are always
 large enough to read at a reasonable distance on mobile viewports. 16px is
 generally considered safe, but take advantage of user testing when available to
 confirm.
+
+Since designing and building for mobile means designing and building for
+flexibility, the px measurement should only be used to declare font size on the
+root (html) element. From there, `rem`s, `%`s, and `em`s should be used to size
+elements.
 
 ### Touch Interactions
 
