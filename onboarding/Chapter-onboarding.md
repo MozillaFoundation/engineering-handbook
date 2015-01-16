@@ -33,7 +33,7 @@ Contained in the guide you are reading, we will list out a lot of different tool
 * New Relic (app / infrastructure performance) (Contact [JP](mailto:jp@mozillafoundation.org) for a login) -- https://rpm.newrelic.com/accounts/255689/applications
 * Loggins (our logging service) (Contact [JP](mailto:jp@mozillafoundation.org) for a login) -- https://loggins.mofoprod.net (Contact jp)
 * Dashboards List -- https://wiki.mozilla.org/Devops/dashboards
-* Service Now (Use your ) (Mozilla Corp requests for software, equipment, licenses) -- https://mozilla.service-now.com/
-* Mozilla Phonebook (A private Mozilla-wide address book) -- https://phonebook.mozilla.org/
+* Service Now (Use your Mozilla login) (Mozilla Corp requests for software, equipment, licenses) -- https://mozilla.service-now.com/
+* Mozilla Phonebook (Use your Mozilla login) (A private Mozilla-wide address book) -- https://phonebook.mozilla.org/
 * Mozillians.org (A public/semi-private directory of Mozilla employees and community) -- https://mozillians.org/en-* US/
 * Pastebin (A moz-hosted place to dump a bunch of text publicly) -- https://pastebin.mozilla.org/
