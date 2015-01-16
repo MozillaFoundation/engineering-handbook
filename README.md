@@ -1,38 +1,20 @@
-# Engineering Discussions
+# Mozilla Foundation Engineering Handbook
 
-## Dependencies:
-- Ruby 2.1.0 (probably managed by [rbenv](https://github.com/sstephenson/rbenv)
-or rvm)
-- Node > 0.10.0
-- [Bundler](http://bundler.io)
+Webmaker is a part of Mozilla's non-profit mission to create a more open, web literate world. One of the many important parts of the Webmaker effort is the software we build. We build it with the hopes of enabling creation and expression on the web, facilitate learning about the web through a fun experience.
 
-## Install:
+The origins of the various pieces of software that make up Webmaker is at least as storied and diverse as those who built it. -- A team of talented, motivated employees and volunteers. Each project has had some strengths and opinions, but we lacked a coherent opinion of how we build software. Without this stated opinion we lack the ability to learn from our mistakes and build on our successes.
 
-```bash
-npm install
-```
+It can also suck to work on projecs with different defficiencies:
 
-## Run:
+![Superbowl MVCMVVMMVCVM](./assets/happiness.png)
 
-```bash
-npm start
-```
+Contained within this book is a guide to how we write software and how you can help. This is and will always be a work-in-progress. We're always open to new ideas, tools and strategies.
 
-## Test: (there are no tests yet)
+This book is split into four distinct volumes:
 
-```bash
-grunt check
-```
+* [Onboarding &mdash; Start here if you're new to Webmaker projects](onboarding/README.md)
+* [Who We're Building For](personas.md)
+* [Principles of Software Development](principles/README.md)
+* [Our Toolset](tech/README.md)
 
-## Deploy:
-
-As long as the build is passing, travis is deploying [![build](https://travis-ci.org/MozillaFoundation/MoFo-Engineering-Handbook.svg)](https://travis-ci.org/MozillaFoundation/MoFo-Engineering-Handbook)
-
-## To add a chapter
-
-Just make sure you have "handbook" in your array of categories in your yaml front matter. (see _posts/mobile-first for an example)
-
-## Todo:
-
-- [ ] Set up Travis so this works: [![build](https://travis-ci.org/MozillaFoundation/MoFo-Engineering-Handbook.svg)](https://travis-ci.org/MozillaFoundation/MoFo-Engineering-Handbook)
-- [ ] Fix livereload so that works
+_If you'd like to start a discussion about this book, file a new issue [on this repository](https://github.com/MozillaFoundation/MoFo-Engineering-Handbook/issues/new) _. We can help each other work towards a proposal in the form of a Pull Request.
