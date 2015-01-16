@@ -10,7 +10,7 @@ Make sure you don't do more work than you need to. That doesn't necessarily mean
 
 ## Prior to Filing a Pull Request
 
-### automated testing/validation
+### Automated Testing and Validation
 
 Prior to filing a PR, make sure you know your code works, and conforms to our style guide. Don't like our style? Go nuts and modify your editor to display your preferred style using whatever plugins to your editor allow for this! But be aware that all code must be project-profile-conformant, and our
 
