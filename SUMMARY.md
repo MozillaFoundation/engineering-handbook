@@ -6,3 +6,4 @@
 * [Who We Build For](personas.md)
 * [How We Build](principles/README.md)
 * [What We Build With](tech/README.md)
+* [Glossary](GLOSSARY.md)
