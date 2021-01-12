@@ -1,6 +1,6 @@
 # The Mozilla Foundation engineering handbook
 
-Welcome to the Mozilla Foundation engineering handbook. This is a living document.
+Welcome to the [Mozilla Foundation engineering handbook](https://mozillafoundation.github.io/MoFo-Engineering-Handbook/). This is a living document.
 
 ## Our active repositories
 
