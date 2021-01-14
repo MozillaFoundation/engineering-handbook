@@ -10,6 +10,12 @@ Welcome to the [Mozilla Foundation engineering handbook](https://mozillafoundati
 - [network-pulse-api](https://github.com/mozilla/network-pulse-api)
 - [network-pulse-api](https://github.com/mozilla/network-pulse-api)
 
+## Tech stacks
+
+- [Backend technologies](./tech/backend.md)
+- [Frontend technologoes](./tech.frontend.md)
+- [CI/CD](./tech/ci-cd.md)
+
 ## Playbooks
 
 We use these playbooks as guides for planning and tracking work.
