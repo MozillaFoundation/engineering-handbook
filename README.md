@@ -1,5 +1,5 @@
 # MoFo-Engineering-Handbook
 
-This is the repository for the [Mozilla Foundation Engineering Handbook](https://mozillafoundation.github.io/MoFo-Engineering-Handbook).
+This is the repository for the [Mozilla Foundation Engineering Handbook](https://mozillafoundation.github.io/MoFo-Engineering-Handbook) website.
 
-The main entry point is [index.md](index.md).
+The landing page for this content is the [index.md](index.md) listed above.
