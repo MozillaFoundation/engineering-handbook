@@ -4,11 +4,10 @@ Welcome to the [Mozilla Foundation engineering handbook](https://mozillafoundati
 
 ## Our active repositories
 
-- [foundation.mozilla.org](https://github.com/mozilla/foundation.mozilla.org)
-- [donate-wagtail](https://github.com/mozilla/donate-wagtail)
-- [network-pulse](https://github.com/mozilla/network-pulse)
-- [network-pulse-api](https://github.com/mozilla/network-pulse-api)
-- [network-pulse-api](https://github.com/mozilla/network-pulse-api)
+- [foundation.mozilla.org](https://github.com/mozilla/foundation.mozilla.org), the home of https://foundation.mozilla.org
+- [donate-wagtail](https://github.com/mozilla/donate-wagtail), the home of https://donate.mozilla.org
+- [network-pulse](https://github.com/mozilla/network-pulse), the home of https://mozillapulse.org
+- [network-pulse-api](https://github.com/mozilla/network-pulse-api), the home of https://api.mozillapulse.org
 
 ## Tech stacks
 
