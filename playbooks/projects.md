@@ -5,6 +5,7 @@ projects that take 2 or more sprints require:
 - setting up a dedicated slack channel for all participants to join, to ensure common knowledge
 - the project is tracked by way of an initial [spkie](https://en.wikipedia.org/wiki/Spike_(software_development)) to determine all the work involved,
 - this is turned into concrete tasks, with issues filed for each task, and each issue's load estimated in terms of rough hours required to do the work.
+- we set up a feature branch for the work so that development doesn't hold up, or potentially break, the live site.
 - three deadlines are established:
   1. a go-live deadline, for when the work is done and made live
   2. a deliverables deadline, corresponding to a soft-luanch date, by which all the work is done
