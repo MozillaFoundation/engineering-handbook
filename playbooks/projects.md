@@ -9,6 +9,6 @@ Projects that take 1 or more sprints require:
 - Implementation plan from the spike is turned into concrete tasks, with issues filed for each task, and each issue's load estimated in terms of rough hours required to do the work.
 - We set up a feature branch for the work so that development doesn't hold up, or potentially break, the live site, with a dedicated heroku app so that we auto-deploy feature branch work.
 - Three deadlines are established:
-  1. a go-live deadline, for when the work is done and made live
-  2. a deliverables deadline, corresponding to a soft-luanch date, by which all the work is done
-  3. a confidence deadline, which is used to guage whether the deliverables deadline can be met. There should always be enough time between the confidence deadline and deliverables deadline that a decision to postpone can safely be made.
+  1. confidence deadline (optional): which is used to guage whether the internal deadline can be met. There should always be enough time between the confidence deadline and internal deadline that a decision to postpone can safely be made.
+  1. internal deadline: a soft-launch date, by which all the work is done
+  1. diamond deadline: the public facing deadline for when the work is live and ready for users
