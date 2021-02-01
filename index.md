@@ -12,7 +12,7 @@ Welcome to the [Mozilla Foundation engineering handbook](https://mozillafoundati
 ## Tech stacks
 
 - [Backend technologies](./tech/backend.md)
-- [Frontend technologoes](./tech.frontend.md)
+- [Frontend technologoes](./tech/frontend.md)
 - [CI/CD](./tech/ci-cd.md)
 
 ## Playbooks
