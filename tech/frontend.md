@@ -2,6 +2,8 @@
 
 ## foundation.mozilla.org and mozillafestival.org
 
+> Note: Each of these are installed inside of your Docker container.
+
 - [esbuild](https://esbuild.github.io/) for compiling SASS and JavaScript as a faster replacement for webpack
 - [Prettier](https://prettier.io/) for frontend code formatting
 - [Bootstrap](https://getbootstrap.com/docs/4.6/) as the frontend framework
