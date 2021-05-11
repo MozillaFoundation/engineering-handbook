@@ -1,0 +1,14 @@
+site_name: Mozilla Foundation Engineering Handbook
+theme:
+    name: material
+    palette:
+        primary: white
+    logo: assets/mozilla-on-black.svg
+    favicon: assets/favicon.ico
+    features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.tabs
+    - navigation.sections
+extra_css:
+    - stylesheets/extra.css
