@@ -1,0 +1,815 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      <link rel="icon" href="../../../assets/favicon.ico">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.1.4">
+    
+    
+      
+        <title>Setup an Application using Simple Storage Service (S3) - Mozilla Foundation Engineering Handbook</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.bde7dde4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ef6f36e2.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#ffffff">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="white" data-md-color-accent="">
+  
+    
+    <script>function __prefix(e){return new URL("../../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#setup-an-application-using-simple-storage-service-s3" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Mozilla Foundation Engineering Handbook" class="md-header__button md-logo" aria-label="Mozilla Foundation Engineering Handbook" data-md-component="logo">
+      
+  <img src="../../../assets/mozilla-on-black.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Mozilla Foundation Engineering Handbook
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Setup an Application using Simple Storage Service (S3)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../tech/backend/" class="md-tabs__link">
+        Tech
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../certificate-monitoring/" class="md-tabs__link md-tabs__link--active">
+        Devops
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../playbooks/projects/" class="md-tabs__link">
+        Playbooks
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Mozilla Foundation Engineering Handbook" class="md-nav__button md-logo" aria-label="Mozilla Foundation Engineering Handbook" data-md-component="logo">
+      
+  <img src="../../../assets/mozilla-on-black.svg" alt="logo">
+
+    </a>
+    Mozilla Foundation Engineering Handbook
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1" type="checkbox" id="__nav_1" >
+      
+      <label class="md-nav__link" for="__nav_1">
+        Tech
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Tech" data-md-level="1">
+        <label class="md-nav__title" for="__nav_1">
+          <span class="md-nav__icon md-icon"></span>
+          Tech
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../tech/backend/" class="md-nav__link">
+        Backend technologies used in our repos
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../tech/ci-cd/" class="md-nav__link">
+        Continuous Integration and Continuous Development
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../tech/frontend/" class="md-nav__link">
+        Frontend technologies used in our repos
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      <label class="md-nav__link" for="__nav_2">
+        Devops
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Devops" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Devops
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../certificate-monitoring/" class="md-nav__link">
+        Certificate monitoring
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deployment-standards/" class="md-nav__link">
+        Deployment Standards
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../go-live/" class="md-nav__link">
+        Mozilla Foundation Go-Live Checklist
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../technology/" class="md-nav__link">
+        Technology
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zenhub/" class="md-nav__link">
+        Zenhub
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+    
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_6" type="checkbox" id="__nav_2_6" checked>
+      
+      <label class="md-nav__link" for="__nav_2_6">
+        Aws
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Aws" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_6">
+          <span class="md-nav__icon md-icon"></span>
+          Aws
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        Amazon Web Services
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../deploy-heroku/" class="md-nav__link">
+        Deploy heroku
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Setup an Application using Simple Storage Service (S3)
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Setup an Application using Simple Storage Service (S3)
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#services-used" class="md-nav__link">
+    Services Used
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#steps" class="md-nav__link">
+    Steps
+  </a>
+  
+    <nav class="md-nav" aria-label="Steps">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#setting-up-the-s3-bucket" class="md-nav__link">
+    Setting up the S3 Bucket
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setting-up-a-cloudfront-distribution" class="md-nav__link">
+    Setting up a CloudFront distribution
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setting-up-a-custom-domain-using-route-53" class="md-nav__link">
+    Setting up a custom domain using Route 53
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../domain-purchasing/" class="md-nav__link">
+        Domain purchasing
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ssl-certificate-management/" class="md-nav__link">
+        Ssl certificate management
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      <label class="md-nav__link" for="__nav_3">
+        Playbooks
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Playbooks" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Playbooks
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../playbooks/projects/" class="md-nav__link">
+        How we plan large projects
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../playbooks/sprints/" class="md-nav__link">
+        How we plan regular sprints
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#services-used" class="md-nav__link">
+    Services Used
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#steps" class="md-nav__link">
+    Steps
+  </a>
+  
+    <nav class="md-nav" aria-label="Steps">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#setting-up-the-s3-bucket" class="md-nav__link">
+    Setting up the S3 Bucket
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setting-up-a-cloudfront-distribution" class="md-nav__link">
+    Setting up a CloudFront distribution
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setting-up-a-custom-domain-using-route-53" class="md-nav__link">
+    Setting up a custom domain using Route 53
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="setup-an-application-using-simple-storage-service-s3">Setup an Application using Simple Storage Service (S3)</h1>
+<p>This document explains how to setup an application that does not need a server to be running i.e. is a static application, for e.g. static websites.</p>
+<h2 id="services-used">Services Used</h2>
+<ul>
+<li>S3</li>
+<li>CloudFront</li>
+<li>Route 53</li>
+</ul>
+<h2 id="steps">Steps</h2>
+<h3 id="setting-up-the-s3-bucket">Setting up the S3 Bucket</h3>
+<ol>
+<li><strong>Role</strong>: Switch to the appropriate role in which the content for the application needs to exist in.</li>
+<li><strong>Create Bucket</strong>: Click on the "Create Bucket" button in S3, give your bucket a name and select "US Standard" as the region.</li>
+<li><strong>Upload Content</strong>: Click on "Upload" and drag and drop your files into the bucket.</li>
+<li><strong>Setup Hosting</strong>: Next you need to setup hosting for the application. Here's how you do it:</li>
+<li>Select the "Properties" tab and expand the "Static Website Hosting" section.</li>
+<li>Select "Enable website hosting" and type in your application entry-point (Index Document) and the default error page you would like to show (set it to the same value of the Index Document if you don't have a custom error page).</li>
+<li>Click "Save". You should now see an "Endpoint" url that you can access your bucket's contents at. However, this url won't be accessible until you setup permissions for the bucket as described in the next step.</li>
+<li><strong>Permissions</strong>: Adequate permissions need to be set on the bucket to enable access to it. The steps for this are:</li>
+<li>Expand the "Permissions" section in the "Properties" tab.</li>
+<li>Select "Add Bucket Policy" and click on the "AWS Policy Generator" link in the bottom-left corner. This will open a new window/tab with the Policy Generator page.</li>
+<li>In the Policy Generator page:<ol>
+<li>Select the "Policy Type" as "S3 Bucket Policy". </li>
+<li>Set the "Principal" based on who you would like to allow access to the bucket. Set it to "*" (without quotes) to allow access to everyone.</li>
+<li>For the "Action", you will need to at least select the "GetObject" permission. If you want to allow uploads to the S3 bucket from anywhere outside AWS, you should also enable the "PutObject" permission. <em>CAUTION: Do not set the "Principal" as "*" if you are enabling the "PutObject" option. If you need to allow uploading content to the bucket, only allow the "GetObject" action on the bucket, create an IAM user, generate a policy that allows "PutObject" for that user, and use its secret key to upload content.</em></li>
+<li>For the "ARN" set it to your bucket ARN which will look something like <code>arn:aws:s3:::&lt;bucket_name&gt;/*</code></li>
+<li>Click on "Add Statement" and then "Generate Policy". A JSON document is created for you. Copy the text from there.</li>
+</ol>
+</li>
+<li>Paste the JSON permission object into the text area back in the "Add Bucket Policy" dialog in the previous page and click "Save".</li>
+<li>Verify that you can now access the bucket's content by using the url seen in the "Static Website Hosting" section.</li>
+<li>Your S3 bucket should now be setup correctly.</li>
+</ol>
+<h3 id="setting-up-a-cloudfront-distribution">Setting up a CloudFront distribution</h3>
+<p>Once you have your S3 bucket set up, you need to add a CloudFront CDN to serve the bucket's content effectively. The steps for doing so are as follows:</p>
+<ol>
+<li><strong>Role</strong>: Before proceeding, make sure you switch to the appropriate role so that the CloudFront distribution being created is in the same account which contains the SSL certificate you would like to use.</li>
+<li><strong>Create distribution</strong>: Select "Create Distribution" from the CloudFront page and then select "Get Started" under the "Web" section as the delivery method.</li>
+<li><strong>Configuration</strong>: Fill out the fields as follows:</li>
+<li>The "Origin Domain Name" will be the publicly accessible url for the S3 bucket created above.</li>
+<li>If the "Origin Protocol Policy" exists, set it to "HTTP Only".</li>
+<li>Set the "Viewer Protocol Policy" to "Redirect HTTP to HTTPS" so that SSL is always used.</li>
+<li>If you are setting up a custom domain for the application, add it to the "Alternate Domain Names" text field.</li>
+<li>For the basic configuration, the rest of the fields can be left as their default values. Otherwise, you will need to customize some of the other fields (for example, if you do some kind of query string parsing in your application, you might want to enable the "Forward Query Strings" option).</li>
+<li><strong>Verification</strong>: Select "Create distribution" to finish the process. The process of creating the distribution can take up to 20 minutes. Once it is completed, verify that you can access contents through CloudFront by accessing the domain name as seen in the "General" tab when you click on your distribution from the list.</li>
+</ol>
+<h3 id="setting-up-a-custom-domain-using-route-53">Setting up a custom domain using Route 53</h3>
+<p>This step is only needed if you need to set a custom domain to access the contents of you website instead of using the CloudFront distribution's url. The assumption here is that the domain name is already in possession by Mozilla.</p>
+<ol>
+<li><strong>Navigate</strong>: Head to Route 53 and select "Hosted Zones" from the sidebar.</li>
+<li><strong>Create domain</strong>: If your domain does not exist in the list, select "Create Hosted Zone", type in your domain name and click "Create". If your domain already exists in the list, click on it and skip to step 4.</li>
+<li><strong>Setup Name Servers</strong>: Click on your domain and then select "Create Record Set". Leave the "Name" blank and select "Name Server" as the type. Set the name server values in the "Values" field. Click "Create".</li>
+<li><strong>Connect CloudFront</strong>: Select "Create Record Set". If your custom domain is actually a subdomain, type that into the "Name" field. Select the type as "Alias", check "Yes" for the "Alias" option and then type in the CloudFront distribution's url into the "Alias Target" field. Click on "Create" to complete the process.</li>
+<li><strong>Verification</strong>: You should now be able to access your S3 bucket contents through your custom domain name.</li>
+</ol>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        <a href="../deploy-heroku/" class="md-footer__link md-footer__link--prev" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Deploy heroku
+            </div>
+          </div>
+        </a>
+      
+      
+        <a href="../domain-purchasing/" class="md-footer__link md-footer__link--next" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Domain purchasing
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.sections"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../../../assets/javascripts/workers/search.4fa0e4ee.min.js", "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.1d3bfcf1.min.js"></script>
+      
+    
+  </body>
+</html>
