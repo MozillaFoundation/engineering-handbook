@@ -1,6 +1,10 @@
 # Introduction
 
-Welcome to the [Mozilla Foundation engineering handbook](https://mozillafoundation.github.io/MoFo-Engineering-Handbook/). This is a living document.
+!!! note "Work in Progress"
+
+    This document is still being developed
+
+Welcome to the [Mozilla Foundation engineering handbook](https://mozillafoundation.github.io/engineering-handbook/). This is a living document.
 
 ## Our active repositories
 
@@ -21,7 +25,3 @@ We use these playbooks as guides for planning and tracking work.
 
 - [General sprint playbook](./playbooks/sprints.md) used to plan regular sprints
 - [Dedicated project playbook](./playbooks/projects.md) used to plan projects around specific work that will take up their own (one or more) sprint(s)
-
-## Notes
-
-:warning: This document is still being developed :warning: 
