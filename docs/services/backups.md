@@ -15,6 +15,4 @@ For this reason, when destroying resources, we aim to copy the most recent snaps
 
 1. `heroku pg:backups:capture [db-identifier] -a [app-name]`
 2. `heroku pg:backups:download [backup-identifier] -a [app-name]`
-3. Upload the downloaded file to an encrypted S3 bucket - don't forget to rename the file to something more descriptive.
-
-Generally, the `mozilla-foundation-archive` bucket in the `mofo-ops` S3 account should be used unless there are specific security or access requirements.
+3. Upload the downloaded file to the `mozilla-foundation-archive` bucket in the `mofo-ops` AWS account - don't forget to rename the file to something more descriptive.
