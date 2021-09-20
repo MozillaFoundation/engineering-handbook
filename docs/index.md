@@ -19,6 +19,10 @@ Welcome to the [Mozilla Foundation engineering handbook](https://mozillafoundati
 - [Frontend technologoes](./tech/frontend.md)
 - [CI/CD](./tech/ci-cd.md)
 
+## Services & Tools
+
+- [Backups](./services/backups.md)
+
 ## Playbooks
 
 We use these playbooks as guides for planning and tracking work.
